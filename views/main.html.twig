@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script defer src="https://kit.fontawesome.com/1d3be4af60.js"></script>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <nav>
+        <ul class="indexMenu">
+          <li class="indexMenu_item"><a href="/">Главная</a></li>
+          <li class="indexMenu_item">
+            <a href="/good/getAll">Галерея</a>
+          </li>
+          {% if is_admin %}
+          <li class="indexMenu_item">
+            <a href="/good/getAdding">Добавить товар</a>
+          </li>
+          {% endif %}
+
+          <li class="indexMenu_item">
+            <a href="/cart/getAll">Корзина</a>
+          </li>
+          {% if is_admin %}
+          <li class="indexMenu_item">
+            <a href="/user/getAll">Пользователи</a>
+          </li>
+          {% endif %}
+          <li class="indexMenu_item">
+            <a href="/account/index">Личный кабинет</a>
+          </li>
+        </ul>
+      </nav>
+
+      <p style="color: red">{{ msg }}</p>
+      {% block content %} {% endblock content %}
+    </div>
+  </body>
+
+  <script>
+    function closeWindow(event) {
+      window.close();
+    }
+
+    // function sendButtonValue(event, op) {
+    //     let el = document.getElementsByTagName("form");
+    //     el[0].action += `&operation=${op}`;
+    // }
+
+    function orderDetailed(event) {
+      console.log(event);
+      let invisibleElement = event.target.nextElementSibling;
+      invisibleElement.classList.toggle("invisible");
+      if (invisibleElement.classList.contains("invisible")) {
+        event.target.innerText = "Подробнее...";
+      } else {
+        event.target.innerText = "Свернуть";
+      }
+    }
+  </script>
+</html>

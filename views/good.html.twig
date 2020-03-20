@@ -1,0 +1,17 @@
+{% extends layout %}
+
+{% block content %}   
+
+<div class='modalWindowContainer'>
+    <div class='modalWindow'>
+        <div class='imageWindow'><img src='{{ good.getImagePath(240, 260) }}' alt={{ good.name|slice(0,  good.name|length - 4)}}></div>
+        <div class="featured__text">
+            <span class="featured__text__black">{{ good.good_name }}</span>
+            <div class="featured__text__pink">{{ good.price }} руб.</div>
+        </div>
+    </div>
+</div>
+</div>
+<a href='#' onClick='closeWindow(event)' class='arrow'><i class='fas fa-reply'></i></a>
+</div>
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% extends layout %} {% block content %}
+
+<h3>Введите характеристики товара</h3>
+<form method="post" action="/good/addNew">
+  <br /><br />
+  <input
+    required
+    name="good_name"
+    type="text"
+    placeholder="Название товара"
+  /><br /><br />
+  <input
+    required
+    name="price"
+    type="number"
+    step="0.01"
+    min="0"
+    placeholder="Цена товара"
+  /><br /><br />
+  <input
+    name="name"
+    type="text"
+    placeholder="Имя файла изображения"
+  /><br /><br />
+  <input
+    name="path"
+    type="text"
+    placeholder="Каталог изображения"
+  /><br /><br />
+  <input type="submit" value="Отправить" />
+</form>
+{% endblock content %}

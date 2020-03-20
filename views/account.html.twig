@@ -1,0 +1,55 @@
+{% extends layout %} {% block content %}
+<div>Здравствуйте, {{ name }}</div>
+<a href="/auth/unAuth">Выход</a>
+<h3>Ваши заказы</h3>
+{% for order in orders %}
+
+<div class="orderItem">
+  {% if isAdmin %}
+  <form
+    method="post"
+    class="orderForm"
+    action="/order/changeStatus/?id={{ order.id }}"
+  >
+    <span class="orderHeader">Заказ №{{ order.id }}</span>
+    <select name="status">
+      {% for name, value in arrStatus %} {% if value is same as (order.status) %}
+      <option selected value='{{
+        value
+      }}'> {% else %}
+      <option value="{{ name }}"> {% endif %} {{ value }} </option>
+
+      {% endfor %}
+    </select>
+    <input type="submit" value="Изменить статус" />
+  </form>
+  {% endif %}
+  
+  Сумма: {{ order.sum }}; Заказчик: {{ order.user_name }}; Адрес доставки:
+  {{ order.adress }}; Телефон: {{ order.tel }}; Статус: {{order.status}}.<br />
+  <button onClick="orderDetailed(event)">Подробнее...</button>
+
+  <table class="productsTable container invisible">
+    <thead>
+      <tr class="productsTable__header">
+        <td>Наименование товара</td>
+        <td>Цена</td>
+        <td>Количество</td>
+        <td>Сумма</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in order.orders_data %}
+
+      <tr class="productsTable__row">
+        <td class="productsTable__productDetails">{{ item.good_name }}</td>
+        <td>{{ item.price }} руб.</td>
+        <td>{{ item.count }}</td>
+        <td>{{ item.count * item.price }} руб.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endfor %} {% endblock content %}

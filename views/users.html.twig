@@ -1,0 +1,21 @@
+{% extends layout %} {% block content %} {% for user in users %}
+<form
+  class="users"
+  method="POST"
+  action="/user/changeStatus/?id={{ user.id }}"
+>
+  <b>login</b>: {{ user.login }} name: {{ user.name }}
+  {% if user.is_admin %} {% set checked = 'checked'%} {% else %} {% set checked
+  = ''%} {% endif %}
+
+  <b>admin</b>: <input name="is_admin" type="checkbox" {{checked}} />
+  <b>adress</b>: {{ user.adress }} <b>telefone</b>: {{ user.tel }}
+
+  {% if user.blocked %} {% set checked = 'checked'%} {% else %} {% set checked =
+  ''%} {% endif %}
+
+  <b>blocked</b>: <input name="blocked" type="checkbox" {{checked}} />
+  <input type="submit" value="Изменить" />
+</form>
+<hr />
+{% endfor %} {% endblock content %}

@@ -1,0 +1,9 @@
+{% extends layout %} {% block content %}
+<h3>Введите Ваши логин и пароль</h3>
+<form method="post" action="/auth/auth">
+  <input name="login" type="text" placeholder="login" /><br /><br />
+  <input name="password" type="password" placeholder="password" /><br /><br />
+  <input type="submit" />
+  <a href="/account/register">Ещё не с нами?</a>
+</form>
+{% endblock content %}

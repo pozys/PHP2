@@ -1,0 +1,30 @@
+{% extends layout %}
+
+{% block content %}
+    
+<div class="imageBlock">
+  {% for good in goods %}
+
+  <div class="imageContainer">
+    <a target="blanc" href='/good/getOne/?id={{ good.id }}'>
+      <img
+        class="image"
+        src="{{ good.getImagePath(200, 222) }}"
+        alt={{ good.name|slice(0,  good.name|length - 4) }}
+        
+    /></a>
+
+    <div class="good_name">{{ good.good_name }}</div>
+    <div class="price">{{ good.price }} руб.</div>
+    <a
+      href="/cart/updateCart/?id={{ good.id }}&count=1&price={{
+        good.price
+      }}&good_name={{ good.good_name }}"
+      class="buyButton"
+      >Добавить в корзину</a
+    >
+  </div>
+
+  {% endfor %}
+</div>
+{% endblock content %}

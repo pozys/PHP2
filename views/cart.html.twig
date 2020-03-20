@@ -1,0 +1,25 @@
+{% extends layout %} {% block content %}
+
+<h3>Ваша корзина:</h3>
+
+<div class="imageBlock">
+  {% for good in goods %} 
+  <div class='imageContainer'><a target='blanc' href='/good/getOne/?id={{ good.id }}'><img class='image' src="{{ good.getImagePath(200, 222) }}"
+     alt={{ good.name|slice(0,  good.name|length - 4)}}></a>
+    <a href='/cart/updateCart/?id={{ good.id }}'></a>
+    <div class='price'>Цена: {{ cart[good.id]['price'] }} руб.</div>
+    <div class='modifyCountContainer'><div class='countOfItem'>Количество: {{ cart[good.id]['count'] }}</div>
+    <a class='modifyCount' href='/cart/updateCart/?id={{ good.id }}&backToCart=true&count=1'>+</a>
+    <a class='modifyCount' href='/cart/updateCart/?id={{ good.id }}&backToCart=true&count=-1'>-</a></div>
+    <div class='price'>Сумма: {{ cart[good.id]['price'] * cart[good.id]['count'] }} руб.</div>
+    </div>
+  
+    
+  {% else %}
+  <p>Корзина пуста</p>
+  {% endfor %}
+  Итого: {{ totalSum }}  руб.
+  <a href='/order/index' class='greyBorderButton greyBorderButton_forProducts-cart'>Оформить заказ</a>
+</div>
+
+{% endblock content %}
